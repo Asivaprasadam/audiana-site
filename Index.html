@@ -1,0 +1,731 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Audiana — Read with your ears</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          html,
+          body {
+            height: 100%;
+            background: #07080d;
+          }
+
+          @keyframes auroraA {
+            0%,
+            100% {
+              transform: translate(0, 0) scale(1);
+            }
+            50% {
+              transform: translate(7%, 6%) scale(1.15);
+            }
+          }
+          @keyframes auroraB {
+            0%,
+            100% {
+              transform: translate(0, 0) scale(1.1);
+            }
+            50% {
+              transform: translate(-6%, -7%) scale(1);
+            }
+          }
+          @keyframes wavePan {
+            from {
+              transform: translate(-51.2%, -49.3%) scale(0.99);
+            }
+            to {
+              transform: translate(-48.8%, -50.7%) scale(1.03);
+            }
+          }
+          @keyframes wavePulse {
+            0%,
+            100% {
+              filter: brightness(1) saturate(1);
+            }
+            50% {
+              filter: brightness(1.16) saturate(1.18);
+            }
+          }
+          @keyframes waveBreathe {
+            0%,
+            100% {
+              opacity: 0.78;
+            }
+            50% {
+              opacity: 0.98;
+            }
+          }
+          @keyframes logoFloat {
+            0%,
+            100% {
+              transform: translateY(0) rotate(0deg);
+            }
+            50% {
+              transform: translateY(-9px) rotate(-2deg);
+            }
+          }
+          @keyframes logoGlow {
+            0%,
+            100% {
+              opacity: 0.45;
+              transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+              opacity: 0.85;
+              transform: translate(-50%, -50%) scale(1.3);
+            }
+          }
+          @keyframes riseIn {
+            from {
+              transform: translateY(20px);
+            }
+            to {
+              transform: translateY(0);
+            }
+          }
+          @keyframes pulseDot {
+            0% {
+              transform: scale(0.9);
+              opacity: 0.7;
+            }
+            70% {
+              transform: scale(1.7);
+              opacity: 0;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+              animation: none !important;
+              transition: none !important;
+            }
+          }
+        </style>
+      </helmet>
+
+      <template id="__bundler_thumbnail" data-bg-color="#07080d">
+        <svg viewBox="0 0 1280 900" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1280" height="900" fill="#07080d" />
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F97316" />
+              <stop offset="100%" stop-color="#7C3AED" />
+            </linearGradient>
+          </defs>
+          <circle
+            cx="640"
+            cy="320"
+            r="160"
+            fill="none"
+            stroke="url(#g1)"
+            stroke-width="1"
+            opacity="0.3"
+          />
+          <rect
+            x="340"
+            y="480"
+            width="600"
+            height="80"
+            rx="8"
+            fill="url(#g1)"
+            opacity="0.15"
+          />
+          <rect
+            x="440"
+            y="590"
+            width="400"
+            height="16"
+            rx="8"
+            fill="#e8eaed"
+            opacity="0.12"
+          />
+          <rect
+            x="490"
+            y="620"
+            width="300"
+            height="12"
+            rx="6"
+            fill="#e8eaed"
+            opacity="0.07"
+          />
+        </svg>
+      </template>
+
+      <div
+        style="
+          min-height: 100vh;
+          background: #07080d;
+          font-family: &quot;Inter&quot;, system-ui, sans-serif;
+          color: #e8eaed;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 56px 24px;
+        "
+      >
+        <!-- Aurora background -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              width: 55vw;
+              height: 55vw;
+              left: -10vw;
+              top: -16vw;
+              background: radial-gradient(
+                circle,
+                rgba(249, 115, 22, 0.16) 0%,
+                transparent 62%
+              );
+              filter: blur(40px);
+              animation: auroraA 16s ease-in-out infinite;
+            "
+          ></div>
+          <div
+            style="
+              position: absolute;
+              width: 55vw;
+              height: 55vw;
+              right: -12vw;
+              bottom: -18vw;
+              background: radial-gradient(
+                circle,
+                rgba(124, 58, 237, 0.18) 0%,
+                transparent 62%
+              );
+              filter: blur(40px);
+              animation: auroraB 19s ease-in-out infinite;
+            "
+          ></div>
+        </div>
+
+        <!-- Vignette -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(
+              ellipse 110% 80% at 50% 50%,
+              transparent 55%,
+              rgba(0, 0, 0, 0.5) 100%
+            );
+          "
+        ></div>
+
+        <!-- Centered single column -->
+        <main
+          style="
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 720px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <!-- Logo (animated) -->
+          <div
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.05s;
+              position: relative;
+              display: inline-flex;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 150px;
+                height: 150px;
+                background: radial-gradient(
+                  circle,
+                  rgba(249, 115, 22, 0.5) 0%,
+                  rgba(124, 58, 237, 0.35) 45%,
+                  transparent 70%
+                );
+                filter: blur(22px);
+                border-radius: 50%;
+                animation: logoGlow 4s ease-in-out infinite;
+                pointer-events: none;
+              "
+            ></div>
+            <img
+              src="./assets/Audiana.png"
+              alt="Audiana"
+              style="
+                position: relative;
+                width: 86px;
+                height: 86px;
+                border-radius: 22px;
+                display: block;
+                animation: logoFloat 5.5s ease-in-out infinite;
+              "
+            />
+          </div>
+
+          <!-- Wordmark -->
+          <div
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.12s;
+              margin-top: 20px;
+            "
+          >
+            <span
+              style="
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                background: linear-gradient(
+                  100deg,
+                  #fb923c 0%,
+                  #f97316 40%,
+                  #c026d3 75%,
+                  #7c3aed 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              "
+              >Audiana</span
+            >
+          </div>
+
+          <!-- BIG hero -->
+          <h1
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.18s;
+              margin-top: 18px;
+              font-size: clamp(40px, 7.5vw, 100px);
+              white-space: nowrap;
+              font-weight: 800;
+              line-height: 0.92;
+              letter-spacing: -4px;
+              color: #f4f5f8;
+            "
+          >
+            Read with
+            <span
+              style="
+                font-family: &quot;Instrument Serif&quot;, serif;
+                font-weight: 400;
+                font-style: italic;
+                letter-spacing: -2px;
+                background: linear-gradient(
+                  100deg,
+                  #fb923c 0%,
+                  #f97316 32%,
+                  #c026d3 70%,
+                  #7c3aed 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              "
+              >your ears.</span
+            >
+          </h1>
+
+          <!-- Launch pill -->
+          <div
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.26s;
+              margin-top: 24px;
+            "
+          >
+            <span
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 9px;
+                background: rgba(249, 115, 22, 0.1);
+                border: 1px solid rgba(249, 115, 22, 0.24);
+                border-radius: 100px;
+                padding: 7px 16px;
+                font-size: 12.5px;
+                font-weight: 600;
+                color: #fb923c;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+              "
+            >
+              <span
+                style="
+                  position: relative;
+                  display: inline-flex;
+                  width: 7px;
+                  height: 7px;
+                "
+              >
+                <span
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 50%;
+                    background: #fb923c;
+                    animation: pulseDot 2.2s ease-out infinite;
+                  "
+                ></span>
+                <span
+                  style="
+                    position: relative;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: #fb923c;
+                  "
+                ></span>
+              </span>
+              Audiana is coming soon
+            </span>
+          </div>
+
+          <!-- Animated soundwave band (edge-blended) -->
+          <div
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.32s;
+              position: relative;
+              width: min(560px, 88vw);
+              height: clamp(205px, 20vw, 245px);
+              margin-top: 34px;
+              overflow: visible;
+            "
+          >
+            <img
+              src="./assets/soundwave-transparent.png"
+              alt="Audiana voice waveform"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 112%;
+                height: auto;
+                object-fit: contain;
+                -webkit-mask-image: linear-gradient(
+                  90deg,
+                  transparent 0%,
+                  #000 13%,
+                  #000 87%,
+                  transparent 100%
+                );
+                mask-image: linear-gradient(
+                  90deg,
+                  transparent 0%,
+                  #000 13%,
+                  #000 87%,
+                  transparent 100%
+                );
+                transform: translate(-50%, -50%);
+                animation:
+                  wavePan 16s ease-in-out infinite alternate,
+                  wavePulse 4.8s ease-in-out infinite,
+                  waveBreathe 6.5s ease-in-out infinite;
+              "
+            />
+          </div>
+
+          <!-- Subtitle -->
+          <p
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.4s;
+              margin-top: 30px;
+              font-size: 16px;
+              line-height: 1.62;
+              color: #9aa1b5;
+              max-width: 480px;
+            "
+          >
+            Audiana turns books, PDFs, articles, and reports into natural voice narration. Built for hands-free and eyes-free reading.
+          </p>
+
+          <!-- Waitlist form -->
+          <div
+            id="waitlist"
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.48s;
+              margin-top: 30px;
+              width: 100%;
+              max-width: 460px;
+            "
+          >
+            <div id="waitlist-success" style="display: none; margin-bottom: 13px">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 11px;
+                  background: rgba(52, 168, 83, 0.1);
+                  border: 1px solid rgba(52, 168, 83, 0.28);
+                  border-radius: 15px;
+                  padding: 17px 20px;
+                  color: #5bd87f;
+                  font-size: 15px;
+                  font-weight: 500;
+                "
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="10"
+                    fill="rgba(52,168,83,0.25)"
+                  ></circle>
+                  <path
+                    d="M6 10l3 3 5-5"
+                    stroke="#5bd87f"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                You're on the list. We'll send your invite first.
+              </div>
+            </div>
+            <div id="waitlist-form-wrap">
+              <form
+                id="waitlist-form"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 7px;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.11);
+                  border-radius: 15px;
+                  padding: 6px 6px 6px 8px;
+                "
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#6b7283"
+                  stroke-width="2"
+                  style="margin-left: 8px; flex-shrink: 0"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-10 5L2 7"></path>
+                </svg>
+                <input
+                  type="email"
+                  id="waitlist-email"
+                  placeholder="you@email.com"
+                  required="required"
+                  style="
+                    flex: 1;
+                    min-width: 0;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    font-family: inherit;
+                    font-size: 15px;
+                    color: #e8eaed;
+                    padding: 11px 6px;
+                  "
+                />
+                <button
+                  type="submit"
+                  style="
+                    flex-shrink: 0;
+                    border: none;
+                    cursor: pointer;
+                    background: linear-gradient(95deg, #f97316, #7c3aed);
+                    border-radius: 11px;
+                    padding: 12px 22px;
+                    font-family: inherit;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #fff;
+                    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.32);
+                    transition: transform 0.15s;
+                  "
+                  style-hover="transform:translateY(-1px)"
+                >
+                  Notify me
+                </button>
+              </form>
+              <p style="margin-top: 13px; font-size: 12.5px; color: #6b7283">
+                Be first in when Audiana launches - no spam, just your invite.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature chips -->
+          <div
+            style="
+              animation: riseIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+              animation-delay: 0.56s;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 10px;
+              margin-top: 30px;
+            "
+          >
+            <span
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                border-radius: 100px;
+                padding: 7px 14px;
+                font-size: 12.5px;
+                color: #8b92a9;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#F97316"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"
+                ></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+              </svg>
+Hands-free
+            </span>
+            <span
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.07);
+                border-radius: 100px;
+                padding: 7px 14px;
+                font-size: 12.5px;
+                color: #8b92a9;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#F97316"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 10v4"></path>
+                <path d="M6 6v12"></path>
+                <path d="M10 3v18"></path>
+                <path d="M14 8v8"></path>
+                <path d="M18 5v14"></path>
+                <path d="M22 10v4"></path>
+              </svg>
+Eyes-free reading
+            </span>
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+          style="
+            margin-top: 48px;
+            padding: 0 clamp(24px, 5vw, 56px) 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+          "
+        >
+          <span style="font-size: 12px; color: #5a6072">© 2026 Audiana</span>
+          <a
+            href="mailto:audianadev@gmail.com?subject=Audiana%20early%20access"
+            style="color: #8b92a9; font-size: 12px; text-decoration: none"
+            style-hover="color:#e8eaed"
+            >Contact Audiana</a
+          >
+        </footer>
+      </div>
+    </x-dc>
+    <script>
+      const waitlistForm = document.getElementById('waitlist-form');
+      const waitlistEmail = document.getElementById('waitlist-email');
+      const waitlistSuccess = document.getElementById('waitlist-success');
+      const waitlistFormWrap = document.getElementById('waitlist-form-wrap');
+
+      waitlistForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const addr = waitlistEmail.value.trim();
+        if (!addr || !addr.includes('@')) {
+          waitlistEmail.focus();
+          return;
+        }
+
+        const to = 'audianadev@gmail.com';
+        const subject = 'Audiana early access request';
+        const body = 'Hi Audiana, please add me to the early-access list.\r\n\r\nEmail: ' + addr;
+
+        window.location.href =
+          'mailto:' + to +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+
+        waitlistFormWrap.style.display = 'none';
+        waitlistSuccess.style.display = 'block';
+      });
+    </script>
+  </body>
+</html>
