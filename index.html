@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./assets/Audiana.png" />
   </head>
   <body>
     <x-dc>
@@ -482,7 +484,8 @@
               max-width: 480px;
             "
           >
-            Audiana turns books, PDFs, articles, and reports into natural voice narration. Built for hands-free and eyes-free reading.
+            Audiana turns books, PDFs, articles, and reports into natural voice
+            narration. Built for hands-free and eyes-free reading.
           </p>
 
           <!-- Waitlist form -->
@@ -496,7 +499,10 @@
               max-width: 460px;
             "
           >
-            <div id="waitlist-success" style="display: none; margin-bottom: 13px">
+            <div
+              id="waitlist-success"
+              style="display: none; margin-bottom: 13px"
+            >
               <div
                 style="
                   display: flex;
@@ -640,7 +646,7 @@
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
                 <line x1="12" y1="19" x2="12" y2="23"></line>
               </svg>
-Hands-free
+              Hands-free
             </span>
             <span
               style="
@@ -672,7 +678,7 @@ Hands-free
                 <path d="M18 5v14"></path>
                 <path d="M22 10v4"></path>
               </svg>
-Eyes-free reading
+              Eyes-free reading
             </span>
           </div>
         </main>
@@ -700,31 +706,36 @@ Eyes-free reading
       </div>
     </x-dc>
     <script>
-      const waitlistForm = document.getElementById('waitlist-form');
-      const waitlistEmail = document.getElementById('waitlist-email');
-      const waitlistSuccess = document.getElementById('waitlist-success');
-      const waitlistFormWrap = document.getElementById('waitlist-form-wrap');
+      const waitlistForm = document.getElementById("waitlist-form");
+      const waitlistEmail = document.getElementById("waitlist-email");
+      const waitlistSuccess = document.getElementById("waitlist-success");
+      const waitlistFormWrap = document.getElementById("waitlist-form-wrap");
 
-      waitlistForm?.addEventListener('submit', (event) => {
+      waitlistForm?.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const addr = waitlistEmail.value.trim();
-        if (!addr || !addr.includes('@')) {
+        if (!addr || !addr.includes("@")) {
           waitlistEmail.focus();
           return;
         }
 
-        const to = 'audianadev@gmail.com';
-        const subject = 'Audiana early access request';
-        const body = 'Hi Audiana, please add me to the early-access list.\r\n\r\nEmail: ' + addr;
+        const to = "audianadev@gmail.com";
+        const subject = "Audiana early access request";
+        const body =
+          "Hi Audiana, please add me to the early-access list.\r\n\r\nEmail: " +
+          addr;
 
         window.location.href =
-          'mailto:' + to +
-          '?subject=' + encodeURIComponent(subject) +
-          '&body=' + encodeURIComponent(body);
+          "mailto:" +
+          to +
+          "?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(body);
 
-        waitlistFormWrap.style.display = 'none';
-        waitlistSuccess.style.display = 'block';
+        waitlistFormWrap.style.display = "none";
+        waitlistSuccess.style.display = "block";
       });
     </script>
   </body>
